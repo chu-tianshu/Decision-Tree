@@ -72,18 +72,28 @@ public class Node {
 		}
 	}
 	
-	public String toString() {
-		if (isLeaf) return ("leaf: " + classificationResult);
-		
-		String result = "";
-		result += ("attribute: " + attributeUsed + "\n");
-		
-		for (int childIndex = 0; childIndex < children.size(); childIndex++) {
-			result += ("choice: " + choices.get(childIndex) + "\n");
-			result += ("child: " + children.get(childIndex).toString() + "\n");
-		}
-		
-		return result;
+	public boolean isLeaf() {
+		return isLeaf;
+	}
+	
+	public int getClassificationResult() {
+		return classificationResult;
+	}
+	
+	public int getAttributeUsed() {
+		return attributeUsed;
+	}
+	
+	public int getChildrenCount() {
+		return children.size();
+	}
+	
+	public Node getChild(int i) {
+		return children.get(i);
+	}
+	
+	public int getChoice(int i) {
+		return choices.get(i);
 	}
 	
 	private boolean isLeaf;

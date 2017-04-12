@@ -9,6 +9,8 @@ public class DecisionTree {
 	private static int[][] trainingSet;
 	private static Map<String, Integer> choiceToNumber;
 	private static Map<String, Integer> attrToNumber;
+	private static Map<Integer, String> numberToChoice;
+	private static Map<Integer, String> numberToAttr;
 	private static Node root;
 	
 	public static void main(String[] args) {
@@ -34,8 +36,13 @@ public class DecisionTree {
 		choiceToNumber = new HashMap<>();
 		trainingSet = ChartParser.parseChart(chart, choiceToNumber);
 		
+		numberToChoice = Helpers.reverseMap(choiceToNumber);
+		numberToAttr = Helpers.reverseMap(attrToNumber);
+		
 		root = new Node(trainingSet, new HashSet<>());
 		
-		System.out.println(root);
+		Digraph dg = new Digraph(root, numberToChoice, numberToAttr);
+		
+		System.out.println(dg);
 	}
 }
