@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class MathHelpers {
 	public static double calcEntropy(int numY, int numN) {
 		if (numY == 0 || numN == 0) return 0.0;
@@ -35,22 +38,19 @@ public class MathHelpers {
 	public static double calcInformationGain(int[][] trainingSet, int attrIdx, double entropy) {
 		double sumPartialEntropy = 0.0;
 		
-		int currChoice = 0;
-		
+		Map<Integer, Integer> choiceToCount = new HashMap<>();
 		for (int i = 0; i < trainingSet.length; i++) {
-			if (trainingSet[i][attrIdx] == currChoice) {
-				int currChoiceCount = 0;
-				
-				for (int index = 0; index < trainingSet.length; index++)
-					if (trainingSet[index][attrIdx] == currChoice) currChoiceCount++;
-				
-				double portion = currChoiceCount * 1.0 / trainingSet.length;
-				
-				sumPartialEntropy = portion * MathHelpers.calcEntropy(trainingSet, attrIdx, currChoice);
-				currChoice++;
-			}
+			int currChoice = trainingSet[i][attrIdx];
+			if (choiceToCount.containsKey(currChoice)) choiceToCount.put(currChoice, choiceToCount.get(currChoice) + 1);
+			else choiceToCount.put(currChoice, 1);
 		}
 		
+		for (Integer choice : choiceToCount.keySet()) {
+			double portion = (double) choiceToCount.get(choice) / trainingSet.length;
+			sumPartialEntropy += portion * MathHelpers.calcEntropy(trainingSet, attrIdx, choice);
+		}
+		
+		System.out.println(entropy - sumPartialEntropy);
 		return (entropy - sumPartialEntropy);
 	}
 }

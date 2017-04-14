@@ -2,11 +2,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ChartParser {
-	public static int[][] parseChart(List<String[]> chart, Map<String, Integer> map) {
+	public static int[][] parseChart(List<String[]> chart, Map<String, Integer> choiceToNumber) {
 		int numAttr = chart.get(0).length - 1;
 		
 		int[][] result = new int[chart.size()][numAttr + 1];
-		int[] currNumbers = new int[numAttr]; // currNumbers[i] starts from 0 and increments each time a new choice in the ith attribute appears.
+		int currNumber = 0;
 		
 		for (int i = 0; i < chart.size(); i++) {
 			String[] instance = chart.get(i);
@@ -15,12 +15,12 @@ public class ChartParser {
 			for (int j = 0; j < numAttr; j++) {
 				String name = instance[j];
 				
-				if (map.containsKey(name)) {
-					result[i][j] = map.get(name);
+				if (choiceToNumber.containsKey(name)) {
+					result[i][j] = choiceToNumber.get(name);
 				} else {
-					result[i][j] = currNumbers[j];
-					map.put(name, currNumbers[j]);
-					currNumbers[j]++;
+					result[i][j] = currNumber;
+					choiceToNumber.put(name, currNumber);
+					currNumber++;
 				}
 			}
 		}

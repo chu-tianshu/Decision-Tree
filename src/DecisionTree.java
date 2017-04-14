@@ -15,23 +15,26 @@ public class DecisionTree {
 	
 	public static void main(String[] args) {
 		chart = new ArrayList<>();
-		chart.add(new String[] {"NVIDIA", "Intel", "Chrome", "0"});
-		chart.add(new String[] {"Radeon", "Intel", "Linux", "1"});
-		chart.add(new String[] {"DC", "AMD", "Windows", "1"});
-		chart.add(new String[] {"NVIDIA", "Intel", "DOS", "0"});
-		chart.add(new String[] {"Radeon", "Intel", "Windows", "1"});
-		chart.add(new String[] {"Radeon", "Intel", "DOS", "0"});
-		chart.add(new String[] {"Radeon", "AMD", "Windows", "0"});
-		chart.add(new String[] {"Radeon", "AMD", "Linux", "1"});
-		chart.add(new String[] {"DC", "AMD", "Chrome", "0"});
-		chart.add(new String[] {"NVIDIA", "Intel", "Linux", "1"});
-		chart.add(new String[] {"NVIDIA", "AMD", "Chrome", "1"});
-		chart.add(new String[] {"NVIDIA", "AMD", "Windows", "0"});
-		
-		attrToNumber = new HashMap<>();
-		attrToNumber.put("GPU", 0);
-		attrToNumber.put("CPU", 1);
-		attrToNumber.put("OS", 2);
+ 		chart.add(new String[] {"Sunny", "Hot", "High", "Weak", "0"});
+ 		chart.add(new String[] {"Sunny", "Hot", "High", "Strong", "0"});
+ 		chart.add(new String[] {"Overcast", "Hot", "High", "Weak", "1"});
+ 		chart.add(new String[] {"Rain", "Mild", "High", "Weak", "1"});
+ 		chart.add(new String[] {"Rain", "Cool", "Normal", "Weak", "1"});
+ 		chart.add(new String[] {"Rain", "Cool", "Normal", "Strong", "0"});
+ 		chart.add(new String[] {"Overcast", "Cool", "Normal", "Strong", "1"});
+ 		chart.add(new String[] {"Sunny", "Mild", "High", "Weak", "0"});
+ 		chart.add(new String[] {"Sunny", "Cool", "Normal", "Weak", "1"});
+ 		chart.add(new String[] {"Rain", "Mild", "Normal", "Weak", "1"});
+ 		chart.add(new String[] {"Sunny", "Mild", "Normal", "Strong", "1"});
+ 		chart.add(new String[] {"Overcast", "Mild", "High", "Strong", "1"});
+ 		chart.add(new String[] {"Overcast", "Hot", "Normal", "Weak", "1"});
+ 		chart.add(new String[] {"Rain", "Mild", "High", "Strong", "0"});
+ 		
+ 		attrToNumber = new HashMap<>();
+ 		attrToNumber.put("Outlook", 0);
+ 		attrToNumber.put("Temperature", 1);
+ 		attrToNumber.put("Humidity", 2);
+ 		attrToNumber.put("Wind", 3);
 		
 		choiceToNumber = new HashMap<>();
 		trainingSet = ChartParser.parseChart(chart, choiceToNumber);

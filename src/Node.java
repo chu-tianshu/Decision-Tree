@@ -17,7 +17,7 @@ public class Node {
 			isLeaf = true;
 			classificationResult = trainingSet[0][trainingSet[0].length - 1];
 		} else {
-			if (usedAttrs.size() == trainingSet[0].length - 1) {
+			if (usedAttrs.size() == trainingSet[0].length) {
 				isLeaf = true;
 				
 				int numY = 0;
@@ -58,8 +58,6 @@ public class Node {
 				Set<Integer> usedAttrsForNextLayer = new HashSet<>();
 				usedAttrsForNextLayer.addAll(usedAttrs);
 				usedAttrsForNextLayer.add(attributeUsed);
-				
-				int maxChoiceNumber = 0;
 				
 				Set<Integer> choicesForUsedAttribute = new HashSet<>();
 				for (int[] ins : trainingSet) choicesForUsedAttribute.add(ins[attributeUsed]);
